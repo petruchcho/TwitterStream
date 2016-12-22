@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion '22.0.1'
-
+    compileSdkVersion 25
+    buildToolsVersion "23.0.3"
     defaultConfig {
-        applicationId "com.kanishk.tweetstream.operations"
-        minSdkVersion 15
-        targetSdkVersion 22
+        applicationId "com.egorpetruchcho.loriandroid"
+        minSdkVersion 17
+        targetSdkVersion 25
         versionCode 1
-        versionName '1.0'
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -25,7 +25,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
     compile 'oauth.signpost:signpost-core:1.2.1.2'
-    compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.android.support:support-v4:21.0.0'
-
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.android.support:support-v4:25.1.0'
 }

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.3\fd32786786e2adb664d5ecc965da47629dca14ba\commons-codec-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="fd32786786e2adb664d5ecc965da47629dca14ba">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\commons-codec-1.3_43afeae0c61336b1ca5eaab4ab82136a64e9d0d5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.3\a85588bec3e2c4584d593d3f15df1677321bca72\universal-image-loader-1.9.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3_414f14f732a639754b27e011cdf88900a345d3e0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\gson-2.4_e7363611ce6848d0fe669d778d2731e6cda34d0a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.1.0_48667a86d8a2997d90ce0ee1018359752a5f53a1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.0_51b5cdf125aa18e2218db2deb3d75ed3f58bcb38.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\.gradle\caches\modules-2\files-2.1\oauth.signpost\signpost-core\1.2.1.2\bf95955dcf3d5a78c201e49b0c336787ea73f161\signpost-core-1.2.1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="bf95955dcf3d5a78c201e49b0c336787ea73f161">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\signpost-core-1.2.1.2_9b658f3d63d3ea5158bb113ffac46c50e19bb47f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\.gradle\caches\modules-2\files-2.1\oauth.signpost\signpost-core\1.2.1.2\bf95955dcf3d5a78c201e49b0c336787ea73f161\signpost-core-1.2.1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="bf95955dcf3d5a78c201e49b0c336787ea73f161">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\signpost-core-1.2.1.2_9b658f3d63d3ea5158bb113ffac46c50e19bb47f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.1.0_01e7579e24a45deae8cc84640c5fd66cec8e3fe9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.0_2725b97ac2c6336d49ea13217e164d6a20088248.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.3\a85588bec3e2c4584d593d3f15df1677321bca72\universal-image-loader-1.9.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3_414f14f732a639754b27e011cdf88900a345d3e0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Android SDK\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.0_67f9420a90f955b05ff7e814d2a472b785a32a2c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.3\fd32786786e2adb664d5ecc965da47629dca14ba\commons-codec-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="fd32786786e2adb664d5ecc965da47629dca14ba">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\commons-codec-1.3_43afeae0c61336b1ca5eaab4ab82136a64e9d0d5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.0_1128b390331a47d6ba10bebe4bb8f3188dab930c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="C:\Users\egorponomarev\Documents\Repositories\TwitterCarrot\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.1.0_978ec4ae8d604c7110df92eaf415cf1c9a17e1f3.jar" />
+    </item>
+
+</items>
