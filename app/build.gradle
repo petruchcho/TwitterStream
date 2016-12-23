@@ -4,12 +4,11 @@ android {
     compileSdkVersion 25
     buildToolsVersion "23.0.3"
     defaultConfig {
-        applicationId "com.egorpetruchcho.loriandroid"
+        applicationId "com.egorpetruchcho.tweetstream"
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -23,8 +22,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+
     compile 'oauth.signpost:signpost-core:1.2.1.2'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+
+    compile ('com.octo.android.robospice:robospice:1.4.5') {
+        exclude module: 'support-v4'
+    }
+    compile project(':twitterstreamingapi')
 }
