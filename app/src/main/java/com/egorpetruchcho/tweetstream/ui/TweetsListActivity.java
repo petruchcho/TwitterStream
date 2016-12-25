@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.egorpetruchcho.tweetstream.model.TweetLikeable;
 import com.egorpetruchcho.twitterstreamingapi.model.Tweet;
 import com.egorpetruchcho.tweetstream.core.TweetsActivity;
 import com.egorpetruchcho.tweetstream.operations.R;
@@ -24,7 +26,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends TweetsActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class TweetsListActivity extends TweetsActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private TimeEntriesAdapter adapter;
     private SwipeRefreshLayout swipeLayout;
@@ -45,7 +47,7 @@ public class MainActivity extends TweetsActivity implements SwipeRefreshLayout.O
         getBackgroundManager().execute(new GetTweetsTask(), new RequestListener<TweetsResult>() {
             @Override
             public void onRequestFailure(SpiceException spiceException) {
-                Toast.makeText(MainActivity.this, "nu net", Toast.LENGTH_LONG).show();
+                Toast.makeText(TweetsListActivity.this, "nu net", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -56,22 +58,22 @@ public class MainActivity extends TweetsActivity implements SwipeRefreshLayout.O
         });
     }
 
-    private class TimeEntriesAdapter extends ArrayAdapter<Tweet> {
+    private class TimeEntriesAdapter extends ArrayAdapter<TweetLikeable> {
 
         private final LayoutInflater layoutInflater;
-        private final List<Tweet> tweets;
+        private final List<TweetLikeable> tweets;
 
         TimeEntriesAdapter(Context context) {
-            this(context, new ArrayList<Tweet>());
+            this(context, new ArrayList<TweetLikeable>());
         }
 
-        TimeEntriesAdapter(Context context, List<Tweet> tweets) {
+        TimeEntriesAdapter(Context context, List<TweetLikeable> tweets) {
             super(context, View.NO_ID, tweets);
             this.tweets = tweets;
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        public void updateTimeEntries(List<Tweet> tweets) {
+        void updateTimeEntries(List<TweetLikeable> tweets) {
             this.tweets.clear();
             this.tweets.addAll(tweets);
             notifyDataSetChanged();
@@ -82,12 +84,13 @@ public class MainActivity extends TweetsActivity implements SwipeRefreshLayout.O
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.list_layout, parent, false);
+                convertView = layoutInflater.inflate(R.layout.v_tweet, parent, false);
             }
-            Tweet tweet = getItem(position);
+            TweetLikeable tweet = getItem(position);
             ((TextView) convertView.findViewById(R.id.user_id)).setText(tweet.getUser().getName());
             ((TextView) convertView.findViewById(R.id.tweet)).setText(tweet.getText());
             ((TextView) convertView.findViewById(R.id.user_name)).setText(tweet.getUser().getScreen_name());
+            ((CheckBox) convertView.findViewById(R.id.like_button)).setChecked(tweet.isLiked());
 
             return convertView;
         }

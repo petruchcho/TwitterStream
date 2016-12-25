@@ -10,7 +10,7 @@ public class Tweet {
 		return text;
 	}
 
-	public void setText(String text) {
+	void setText(String text) {
 		this.text = text;
 	}
 
@@ -18,7 +18,7 @@ public class Tweet {
 		return user;
 	}
 
-	public void setUser(User user) {
+	void setUser(User user) {
 		this.user = user;
 	}
 }

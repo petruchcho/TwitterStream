@@ -13,8 +13,9 @@
         android:theme="@style/AppCompatTheme">
 
         <activity
-            android:name="com.egorpetruchcho.tweetstream.ui.MainActivity"
-            android:label="@string/app_name">
+            android:name="com.egorpetruchcho.tweetstream.ui.TweetsListActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
