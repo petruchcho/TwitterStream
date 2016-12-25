@@ -29,11 +29,11 @@ public class ConnectionTask {
         this.twitterClient = client;
     }
 
-    public List<Tweet> downloadTweets(@Nullable String filterText) {
+    public List<Tweet> downloadTweets(TwitterClient.StreamingTweetsRequest request) {
         List<Tweet> result = null;
         try {
             /* The client response. */
-            Response clientResponse = filterText == null ? twitterClient.getResponse() : twitterClient.getResponse(filterText);
+            Response clientResponse = twitterClient.getResponse(request);
             twitterClient = null;
             if (clientResponse != null && clientResponse.isSuccess()) {
                 /* The twitter task. */

@@ -1,10 +1,13 @@
 package com.egorpetruchcho.twitterstreamingapi.api;
 
+import android.support.annotation.Nullable;
+
 import com.egorpetruchcho.twitterstreamingapi.model.Tweet;
 
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -43,14 +46,7 @@ public class TwitterClient {
     /**
      * The Constant STREAM_END.
      */
-    private static final String STREAM_END = "https://stream.twitter.com/1.1/statuses/sample.json?" +
-            "filter_level=low";
-
-    /**
-     * The Constant STREAM_FILTER.
-     */
-    private static final String STREAM_FILTER = "https://stream.twitter.com/1.1/statuses/" +
-            "filter.json?filter_level=low&track=";
+    private static final String STREAM_ENDPOINT = "https://stream.twitter.com/1.1/statuses/sample.json";
 
     private static final String HTTP_METHOD = "POST";
 
@@ -77,30 +73,27 @@ public class TwitterClient {
         authorizeSign.setTokenWithSecret(ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
     }
 
-    /**
-     * Gets the response after connecting with the stream. Connects with
-     * the sample twitter stream API. Do not call this method from a
-     * UI thread.
-     *
-     * @return the response
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    public Response getResponse() throws IOException {
-        return createConnection(STREAM_END);
-    }
+    public Response getResponse(StreamingTweetsRequest request) throws IOException {
+        StringBuilder url = new StringBuilder(STREAM_ENDPOINT);
+        List<String> params = new ArrayList<>();
 
-    /**
-     * Gets the response after connecting with the stream. Do not call this method from a
-     * UI thread. Connects with the filter stream API
-     *
-     * @param filterText the filter text
-     * @return the response
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    public Response getResponse(String filterText) throws IOException {
-        filterText = URLEncoder.encode(filterText, "UTF-8");
-        String url = STREAM_FILTER.concat(filterText);
-        return createConnection(url);
+        if (request.track != null) {
+            params.add("track=" + request.track);
+        }
+        if (request.filterLevel != null) {
+            params.add("filter_level=" + request.filterLevel);
+        }
+        if (request.language != null) {
+            params.add("language=" + request.language);
+        }
+        if (params.size() > 0) {
+            url.append("?").append(params.get(0));
+        }
+        for (int i = 1; i < params.size(); i++) {
+            url.append("&").append(params.get(i));
+        }
+
+        return createConnection(url.toString());
     }
 
     /**
@@ -131,29 +124,52 @@ public class TwitterClient {
         return this.response;
     }
 
-    /**
-     * Gets the tweets. The tasks call stream
-     * <a href="https://stream.twitter.com/1.1/statuses/filter.json">Filter API</a>
-     * asynchronously. The results are passed to {@link TweetUpdateListener} hooked with the async
-     * task. Ensures that only one task is running at a time
-     *
-     * @param searchText  the search text
-     * @param isNewSearch Whether its's a new search or not. If true the existing
-     *                    running search(if any) is stopped and new task is started for
-     *                    search.
-     */
-    public List<Tweet> downloadTweets(String searchText, boolean isNewSearch) {
+    public List<Tweet> downloadTweets(StreamingTweetsRequest request) {
         task = new ConnectionTask(this);
-        return task.downloadTweets(searchText);
+        return task.downloadTweets(request);
     }
 
-    /**
-     * Download tweets. Runs the task to connect to
-     * <a href="https://stream.twitter.com/1.1/statuses/filter.json">stream API</a>
-     * and download tweets. Ensures that only one task is running at a time
-     */
-    public List<Tweet> downloadTweets() {
-        task = new ConnectionTask(this);
-        return task.downloadTweets(null);
+    public static class StreamingTweetsRequest {
+        @Nullable
+        private final String language;
+        @Nullable
+        private final String track;
+        @Nullable
+        private final String filterLevel;
+
+        private StreamingTweetsRequest(@Nullable String language, @Nullable String track, @Nullable String filterLevel) {
+            this.language = language;
+            this.track = track;
+            this.filterLevel = filterLevel;
+        }
+
+        public static class Builder {
+
+            private String language;
+            private String track;
+            private String filterLevel;
+
+            public Builder() {
+            }
+
+            public Builder setTrack(String track) {
+                this.track = track;
+                return this;
+            }
+
+            public Builder setLanguage(String language) {
+                this.language = language;
+                return this;
+            }
+
+            public Builder setFilterLevel(String filterLevel) {
+                this.filterLevel = filterLevel;
+                return this;
+            }
+
+            public StreamingTweetsRequest build() {
+                return new StreamingTweetsRequest(language, track, filterLevel);
+            }
+        }
     }
 }
