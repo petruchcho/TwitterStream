@@ -18,7 +18,7 @@ public class FileUtils {
     private static Gson gson = new Gson();
 
     private static final String TERMS_FILENAME = "myfile.txt";
-    private static final String STATS_FILENAME = "myfile.txt";
+    private static final String STATS_FILENAME = "stats.txt";
 
     private FileUtils() {
     }

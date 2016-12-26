@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.egorpetruchcho.tweetstream"
         minSdkVersion 17
@@ -31,4 +31,5 @@ dependencies {
         exclude module: 'support-v4'
     }
     compile project(':twitterstreamingapi')
+    compile ('com.androidplot:androidplot-core:1.4.0')
 }
