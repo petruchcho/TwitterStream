@@ -6,6 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -60,6 +63,34 @@ public class SmartTweetsListActivity extends TweetsActivity implements SwipeRefr
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.smart_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.save_data_item:
+                NaiveBayes.getInstance().saveStats(getPercentage());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private int getPercentage() {
+        int liked = 0;
+        for (TweetLikeable tweet : adapter.getTweets()) {
+            if (tweet.isLiked()) {
+                liked++;
+            }
+        }
+        return liked / adapter.getCount();
+    }
+
     private class TimeEntriesAdapter extends ArrayAdapter<TweetLikeable> {
 
         private final LayoutInflater layoutInflater;
@@ -81,6 +112,15 @@ public class SmartTweetsListActivity extends TweetsActivity implements SwipeRefr
             notifyDataSetChanged();
         }
 
+        public List<TweetLikeable> getTweets() {
+            return tweets;
+        }
+
+        @Override
+        public int getCount() {
+            return tweets.size();
+        }
+
         @SuppressWarnings("ConstantConditions")
         @NonNull
         @Override
@@ -100,11 +140,7 @@ public class SmartTweetsListActivity extends TweetsActivity implements SwipeRefr
             likeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                    if (checked) {
-                        NaiveBayes.getInstance().likeTweet(tweet);
-                    } else {
-                        NaiveBayes.getInstance().dislikeTweet(tweet);
-                    }
+                    tweet.setLiked(checked);
                 }
             });
 

@@ -36,11 +36,10 @@ public class GetSmartTweetsTask extends BackgroundTask<TweetsResult> {
             }
         });
         List<Tweet> bestTweets = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 20; i++) {
             bestTweets.add(tweets.get(i));
         }
 
-        TweetsResult result = new TweetsResult(bestTweets);
-        return result;
+        return new TweetsResult(bestTweets);
     }
 }

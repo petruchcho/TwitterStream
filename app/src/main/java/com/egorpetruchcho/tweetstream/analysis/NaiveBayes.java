@@ -130,4 +130,8 @@ public class NaiveBayes {
         countOfAllWords = 0;
         countOfLikedWords = 0;
     }
+
+    public void saveStats(int percentage) {
+        FileUtils.getInstance().saveStats(countOfLikedWords, percentage);
+    }
 }

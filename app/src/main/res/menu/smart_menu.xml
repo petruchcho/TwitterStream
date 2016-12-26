@@ -3,8 +3,8 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:icon="@drawable/ic_remove_circle_outline_black_24dp"
+        android:icon="@drawable/ic_done_black_24dp"
         android:title=""
-        android:id="@+id/clear_data_item"
+        android:id="@+id/save_data_item"
         app:showAsAction="always"/>
 </menu>
