@@ -38,7 +38,7 @@ public class ConnectionTask {
             if (clientResponse != null && clientResponse.isSuccess()) {
                 /* The twitter task. */
                 TwitterTask twitterTask = new TwitterTask();
-                result = twitterTask.getTweets(clientResponse);
+                result = twitterTask.getTweets(clientResponse, request.getTweetsCount());
             } else if (clientResponse != null && !clientResponse.isSuccess()) {
                 String response = clientResponse.streamReader().readLine();
                 Log.e(ConnectionTask.class.toString(), response);

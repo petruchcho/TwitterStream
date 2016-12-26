@@ -6,7 +6,6 @@ import com.egorpetruchcho.twitterstreamingapi.model.Tweet;
 
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,11 +135,17 @@ public class TwitterClient {
         private final String track;
         @Nullable
         private final String filterLevel;
+        private final int tweetsCount;
 
-        private StreamingTweetsRequest(@Nullable String language, @Nullable String track, @Nullable String filterLevel) {
+        private StreamingTweetsRequest(@Nullable String language, @Nullable String track, @Nullable String filterLevel, int tweetsCount) {
             this.language = language;
             this.track = track;
             this.filterLevel = filterLevel;
+            this.tweetsCount = tweetsCount;
+        }
+
+        public int getTweetsCount() {
+            return tweetsCount;
         }
 
         public static class Builder {
@@ -148,6 +153,7 @@ public class TwitterClient {
             private String language;
             private String track;
             private String filterLevel;
+            private int tweetsCount = 15;
 
             public Builder() {
             }
@@ -167,8 +173,13 @@ public class TwitterClient {
                 return this;
             }
 
+            public Builder setTweetsCount(int tweetsCount) {
+                this.tweetsCount = tweetsCount;
+                return this;
+            }
+
             public StreamingTweetsRequest build() {
-                return new StreamingTweetsRequest(language, track, filterLevel);
+                return new StreamingTweetsRequest(language, track, filterLevel, tweetsCount);
             }
         }
     }

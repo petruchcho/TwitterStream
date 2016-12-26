@@ -27,4 +27,8 @@ public class TweetLikeable {
     public void setLiked(boolean liked) {
         this.liked = liked;
     }
+
+    public Tweet getTweet() {
+        return tweet;
+    }
 }
