@@ -2,19 +2,18 @@ package com.egorpetruchcho.tweetstream.ui;
 
 
 import android.graphics.Color;
-import android.graphics.DashPathEffect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 
-import com.androidplot.util.PixelUtils;
-import com.androidplot.xy.CatmullRomInterpolator;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.XYGraphWidget;
 import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
-import com.egorpetruchcho.tweetstream.analysis.FileUtils;
-import com.egorpetruchcho.tweetstream.analysis.StatsPoint;
+import com.egorpetruchcho.tweetstream.analysis.NaiveBayes;
+import com.egorpetruchcho.tweetstream.analysis.Stats;
 import com.egorpetruchcho.tweetstream.core.TweetsActivity;
 import com.egorpetruchcho.tweetstream.operations.R;
 
@@ -22,29 +21,35 @@ import java.text.FieldPosition;
 import java.text.Format;
 import java.text.ParsePosition;
 import java.util.Arrays;
+import java.util.List;
 
 public class StatsActivity extends TweetsActivity {
 
-    private XYPlot plot;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_stats);
 
-        // initialize our XYPlot reference:
-        plot = (XYPlot) findViewById(R.id.plot1);
+        Stats stats = NaiveBayes.getInstance().stats;
+        if (stats == null) {
+            return;
+        }
+        initPlot((XYPlot) findViewById(R.id.plot1), stats.getCountOfAllTweets(), stats.getPercentages());
+        initPlot((XYPlot) findViewById(R.id.plot2), stats.getCountOfLikedTweets(), stats.getPercentages());
+        initPlot((XYPlot) findViewById(R.id.plot3), stats.getCountOfAllTweets(), stats.getF1());
+        initPlot((XYPlot) findViewById(R.id.plot4), stats.getCountOfLikedTweets(), stats.getF1());
+    }
 
-        StatsPoint[] statsPoints = FileUtils.getInstance().readStats();
-        final Number[] domainLabels = new Number[statsPoints.length];
-        Number[] series1Numbers = new Number[statsPoints.length];
+    private void initPlot(XYPlot plot, List<? extends Number> xs, List<? extends Number> ys) {
+        final Number[] domainLabels = new Number[xs.size()];
+        Number[] series1Numbers = new Number[ys.size()];
 
-        for (int i = 0; i < statsPoints.length; i++) {
-            domainLabels[i] = statsPoints[i].getCountOfLikedWords();
-            series1Numbers[i] = statsPoints[i].getPercentage();
+        for (int i = 0; i < xs.size(); i++) {
+            domainLabels[i] = xs.get(i);
+            series1Numbers[i] = ys.get(i);
         }
 
-        // turn the above arrays into XYSeries':
         // (Y_VALS_ONLY means use the element index as the x value)
         XYSeries series1 = new SimpleXYSeries(
                 Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series1");
@@ -59,15 +64,15 @@ public class StatsActivity extends TweetsActivity {
 
         plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new Format() {
             @Override
-            public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
+            public StringBuffer format(Object obj, @NonNull StringBuffer toAppendTo, @NonNull FieldPosition pos) {
                 int i = Math.round(((Number) obj).floatValue());
                 return toAppendTo.append(domainLabels[i]);
             }
+
             @Override
-            public Object parseObject(String source, ParsePosition pos) {
+            public Object parseObject(String source, @NonNull ParsePosition pos) {
                 return null;
             }
         });
-
     }
 }

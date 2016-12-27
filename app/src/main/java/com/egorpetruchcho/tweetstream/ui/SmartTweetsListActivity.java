@@ -74,21 +74,11 @@ public class SmartTweetsListActivity extends TweetsActivity implements SwipeRefr
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.save_data_item:
-                NaiveBayes.getInstance().saveStats(getPercentage());
+                NaiveBayes.getInstance().updateStats(adapter.tweets);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private int getPercentage() {
-        int liked = 0;
-        for (TweetLikeable tweet : adapter.getTweets()) {
-            if (tweet.isLiked()) {
-                liked++;
-            }
-        }
-        return liked / adapter.getCount();
     }
 
     private class TimeEntriesAdapter extends ArrayAdapter<TweetLikeable> {

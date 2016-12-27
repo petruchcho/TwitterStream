@@ -19,7 +19,7 @@
             app:lineLabelRotationBottom="-45"
             app:lineLabels="left|bottom"
             app:rangeTitle="range"
-            app:title="A Simple XY Plot" />
+            app:title="Percentage based on all tweets" />
 
         <com.androidplot.xy.XYPlot
             android:id="@+id/plot2"
@@ -31,17 +31,30 @@
             app:lineLabelRotationBottom="-45"
             app:lineLabels="left|bottom"
             app:rangeTitle="range"
-            app:title="A Simple XY Plot" />
+            app:title="Percentage based on liked tweets" />
 
         <com.androidplot.xy.XYPlot
             android:id="@+id/plot3"
             style="@style/APDefacto.Light"
             android:layout_width="fill_parent"
             android:layout_height="250dp"
+            android:layout_marginBottom="20dp"
             app:domainTitle="domain"
             app:lineLabelRotationBottom="-45"
             app:lineLabels="left|bottom"
             app:rangeTitle="range"
-            app:title="A Simple XY Plot" />
+            app:title="F1 based on all tweets" />
+
+        <com.androidplot.xy.XYPlot
+            android:id="@+id/plot4"
+            style="@style/APDefacto.Dark"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:layout_marginBottom="20dp"
+            app:domainTitle="domain"
+            app:lineLabelRotationBottom="-45"
+            app:lineLabels="left|bottom"
+            app:rangeTitle="range"
+            app:title="F1 based on liked tweets" />
     </LinearLayout>
 </ScrollView>

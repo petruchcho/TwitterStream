@@ -2,6 +2,7 @@ package com.egorpetruchcho.tweetstream.analysis;
 
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.egorpetruchcho.tweetstream.core.TweetsApplication;
 import com.google.gson.Gson;
@@ -14,11 +15,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class FileUtils {
-    private static FileUtils instance = new FileUtils();
-    private static Gson gson = new Gson();
-
     private static final String TERMS_FILENAME = "myfile.txt";
     private static final String STATS_FILENAME = "stats.txt";
+    private static FileUtils instance = new FileUtils();
+    private static Gson gson = new Gson();
 
     private FileUtils() {
     }
@@ -67,14 +67,15 @@ public class FileUtils {
         }
     }
 
-    public StatsPoint[] readStats() {
+    @Nullable
+    Stats readStats() {
         Context context = TweetsApplication.getInstance();
         FileInputStream fis;
         try {
             fis = context.openFileInput(STATS_FILENAME);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return new StatsPoint[0];
+            return new Stats();
         }
         InputStreamReader isr = new InputStreamReader(fis);
         BufferedReader bufferedReader = new BufferedReader(isr);
@@ -86,19 +87,15 @@ public class FileUtils {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return new StatsPoint[0];
+            return new Stats();
         }
 
         String json = sb.toString();
-        return gson.fromJson(json, StatsPoint[].class);
+        return gson.fromJson(json, Stats.class);
     }
 
-    public void saveStats(int countOfLikedWords, int goodFeedPercentage) {
-        StatsPoint[] alreadyCollected = readStats();
-        StatsPoint[] withNewOne = new StatsPoint[alreadyCollected.length + 1];
-        System.arraycopy(alreadyCollected, 0, withNewOne, 0, alreadyCollected.length);
-        withNewOne[withNewOne.length - 1] = new StatsPoint(countOfLikedWords, goodFeedPercentage);
-        String s = gson.toJson(withNewOne);
+    void saveStats(Stats stats) {
+        String s = gson.toJson(stats);
 
         FileOutputStream outputStream;
 
@@ -109,9 +106,5 @@ public class FileUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void clear() {
-        saveTerms(new Term[0]);
     }
 }
